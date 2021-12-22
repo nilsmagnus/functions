@@ -28,6 +28,41 @@ func Any[T any](items []T, predicate func(T) bool) bool {
 	return false
 }
 
+// First returns the first element of items matching predicate p. Returns item and a bool, the bool indicates if anything was found
+func First[T any](items []T, predicate func(T) bool) (*T, bool) {
+	for _, i := range items {
+		if predicate(i) {
+			return &i, true
+		}
+	}
+	return nil, false
+}
+
+// Last returns the last element of items matching predicate p. Returns item and a bool, the bool indicates if anything was found
+func Last[T any](items []T, predicate func(T) bool) (*T, bool) {
+	// search backwards in items
+	for i := len(items) - 1; i > 0; i-- {
+		if predicate(items[i]) {
+			return &items[i], true
+		}
+	}
+	return nil, false
+}
+
+// ForEach runs the action on every item of items
+func ForEach[T any](items []T, action func(a T)) {
+	for _, item := range items {
+		action(item)
+	}
+}
+
+// ForEachIndexed runs the action on every item of items
+func ForEachIndexed[T any](items []T, action func(a T, index int)) {
+	for i, item := range items {
+		action(item, i)
+	}
+}
+
 //Contains checks needle is in items.
 func Contains[T comparable](items []T, needle T) bool {
 	for _, t := range items {

@@ -5,9 +5,17 @@
 
 Handy collection-functions for the `go` language. 
 
-Functions for `map`, `reduce`, `filter`, `associate`, `associateby`, `contains`.
+Functions to support common collection-operations: 
 
+* `map`
+* `reduce`
+* `filter`
+* `associate`,`associateby`
+* `contains`, `containsAll`
+* `first`, `last`
+* `forEach`, `forEachIndexed`
 
+Coming soon: See godoc for complete documentation.
 
 ## getting started
 

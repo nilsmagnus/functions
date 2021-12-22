@@ -5,6 +5,62 @@ import (
 	"testing"
 )
 
+func Test_ForEach(t *testing.T) {
+	numbers := testNumbers(199)
+
+	tmp := 0
+
+	ForEach(numbers, func(i int) { tmp++ })
+
+	if tmp != len(numbers) {
+		t.Errorf("Action should have been run %d times, was only run %d times", len(numbers), tmp)
+	}
+
+}
+
+func Test_ForEachIndexed(t *testing.T) {
+	numbers := testNumbers(199)
+
+	tmp := 0
+
+	ForEachIndexed(numbers, func(value int, index int) { tmp += (index + value) })
+
+	if tmp != 39402 {
+		t.Errorf("expected 39402, was only  %d  ", tmp)
+	}
+
+}
+
+func Test_First(t *testing.T) {
+	numbers := testNumbers(199)
+
+	predicate := func(i int) bool { return i > 77 }
+	first, ok := First(numbers, predicate)
+
+	if !ok {
+		t.Errorf("should have found a value matching the predicate")
+	}
+
+	if *first != 78 {
+		t.Errorf("First number should have been 78, was %d", *first)
+	}
+}
+
+func Test_Last(t *testing.T) {
+	numbers := testNumbers(42)
+
+	predicate := func(i int) bool { return i%13 == 0 }
+	last, ok := Last(numbers, predicate)
+
+	if !ok {
+		t.Errorf("should have found a value matching the predicate")
+	}
+
+	if *last != 39 {
+		t.Errorf("First number should have been 39, was %d", *last)
+	}
+}
+
 func Test_Associate(t *testing.T) {
 	numbers := testNumbers(100)
 
