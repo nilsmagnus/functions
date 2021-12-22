@@ -91,6 +91,19 @@ func Test_Any(t *testing.T) {
 
 }
 
+func Test_Contains(t *testing.T) {
+	numbers := testNumbers(100)
+
+	if Contains(numbers, func(t int) bool { return t > 100 }) {
+		t.Errorf("100 is not in slice")
+	}
+
+	if !Any(numbers, func(t int) bool { return t == 10 }) {
+		t.Errorf("10 is in slice")
+	}
+
+}
+
 //testNumbers is an internal function for testing-purposes
 func testNumbers(size int) []int {
 	numbers := make([]int, size)
