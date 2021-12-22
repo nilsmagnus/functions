@@ -1,15 +1,17 @@
-# functions
+# functions to go
 
 Handy collection-functions for the `go` language. 
 
 Functions for `map`, `reduce`, `filter`, `associate`, `associateby`, `contains`.
 
 
-Have a look at [functions_test.go] for usage
 
 ## getting started
 
     go get github.com/nilsmagnus/functions
+
+
+Have a look at [functions_test.go](functions_test.go) for usage.
 
 
 ### Map-function
