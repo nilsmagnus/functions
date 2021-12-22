@@ -28,7 +28,7 @@ func Any[T any](items []T, predicate func(T) bool) bool {
 	return false
 }
 
-//Contains checks if predicate is true for any item in items.
+//Contains checks needle is in items.
 func Contains[T comparable](items []T, needle T) bool {
 	for _, t := range items {
 		if needle == t {
@@ -36,6 +36,16 @@ func Contains[T comparable](items []T, needle T) bool {
 		}
 	}
 	return false
+}
+
+//ContainsAll checks if all needles exists in items
+func ContainsAll[T comparable](items []T, needles []T) bool {
+	for _, needle := range needles {
+		if !Contains(items, needle) {
+			return false
+		}
+	}
+	return true
 }
 
 //Filter returns a slice of items matching the predicate

@@ -94,12 +94,28 @@ func Test_Any(t *testing.T) {
 func Test_Contains(t *testing.T) {
 	numbers := testNumbers(100)
 
-	if Contains(numbers, func(t int) bool { return t > 100 }) {
+	if Contains(numbers, 100) {
 		t.Errorf("100 is not in slice")
 	}
 
-	if !Any(numbers, func(t int) bool { return t == 10 }) {
+	if !Contains(numbers, 10) {
 		t.Errorf("10 is in slice")
+	}
+
+}
+
+func Test_ContainsAll(t *testing.T) {
+	numbers := testNumbers(100)
+	needles := []int{1, 2, 57}
+
+	if !ContainsAll(numbers, needles) {
+		t.Errorf("all needles should be present")
+	}
+
+	needlesNotUnion := []int{1, 2, 199}
+
+	if ContainsAll(numbers, needlesNotUnion) {
+		t.Errorf("199 should not be present")
 	}
 
 }
