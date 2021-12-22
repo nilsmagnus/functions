@@ -1,3 +1,6 @@
+![tests passing](https://github.com/nilsmagnus/functions/actions/workflows/go.yml/badge.svg)
+
+
 # functions to go
 
 Handy collection-functions for the `go` language. 
