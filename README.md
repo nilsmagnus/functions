@@ -21,7 +21,7 @@ numbers := []int{1,2,3,199}
 
 mapd := Map(numbers, func(a int) string { return fmt.Sprintf("%d", a)}) 
 
-// mapd => ["1", "2", "3", "199"] // => ["1", "2", "3", "199"]
+// mapd => []string{"1", "2", "3", "199"}
 ```
 
 ### AssociateBy-function 
