@@ -10,6 +10,24 @@ Functions for `map`, `reduce`, `filter`, `associate`, `associateby`, `contains`.
 
     go get github.com/nilsmagnus/functions
 
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/nilsmagnus/functions"
+	"log"
+)
+
+func main() {
+	items := []int{1, 2, 99}
+
+	mappedItems := functions.Map(items, func(a int) string { return fmt.Sprintf("mapped %d", a) })
+
+	log.Printf("Mapped items: %v", mappedItems)
+}
+
+```
 
 Have a look at [functions_test.go](functions_test.go) for usage.
 

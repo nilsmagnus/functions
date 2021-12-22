@@ -29,7 +29,7 @@ func Any[T any](items []T, predicate func(T) bool) bool {
 }
 
 //Contains checks if predicate is true for any item in items.
-func Contains[T any](items []T, needle T) bool {
+func Contains[T comparable](items []T, needle T) bool {
 	for _, t := range items {
 		if needle == t {
 			return true
