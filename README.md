@@ -29,6 +29,9 @@ func main() {
 
 ```
 
+Run this example on the [playground](https://go.dev/play/p/tpcenABL62q?v=gotip)
+
+
 Have a look at [functions_test.go](functions_test.go) for usage.
 
 
