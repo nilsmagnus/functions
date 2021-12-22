@@ -15,21 +15,22 @@ Have a look at [functions_test.go](functions_test.go) for usage.
 
 
 ### Map-function
-```language=go
+```go
 
-numbers := int[]{1,2,3,199}
+numbers := []int{1,2,3,199}
 
-mapd := map(numbers, func(a int) string { return fmt.Sprintf("%d", a)} // => ["1", "2", "3", "199"]
+mapd := Map(numbers, func(a int) string { return fmt.Sprintf("%d", a)}) 
+
+// mapd => ["1", "2", "3", "199"] // => ["1", "2", "3", "199"]
 ```
 
 ### AssociateBy-function 
-```
-numbers := int[]{1,2,3,199}
+```go
+numbers := []int{1,2,3,199}
 
 mapd := AssociateBy(numbers, func(t int) string {
     return fmt.Sprintf("%d", t)
 }) 
 
 // => map[string]int {"1":1, "2":2, "3":3, "199": 199}
-
 ```
