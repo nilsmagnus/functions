@@ -5,27 +5,61 @@ import (
 	"testing"
 )
 
-func Test_Filter(t *testing.T) {
-	numbers := make([]int, 10)
-	for i, _ := range numbers {
-		numbers[i] = i
+func Test_Associate(t *testing.T) {
+	numbers := testNumbers(100)
+
+	mapd := Associate(numbers)
+
+	if len(mapd) != len(numbers) {
+		t.Errorf("resulting map and starting items should have same length")
 	}
 
-	filtered := Filter(numbers, func(t int) bool {
-		return t > 5
+}
+
+func Test_AssociateBy(t *testing.T) {
+	numbers := testNumbers(100)
+
+	mapd := AssociateBy(numbers, func(t int) string {
+		return fmt.Sprintf("%d", t)
 	})
+
+	if len(mapd) != len(numbers) {
+		t.Errorf("resulting map and starting items should have same length")
+	}
+
+}
+
+func Test_Reduce(t *testing.T) {
+
+	numbers := testNumbers(10)
+
+	accumulator := func(s string, i int) string {
+		return s + fmt.Sprintf("%d", i)
+	}
+	reduction := Reduce(numbers, accumulator, "hei")
+
+	if reduction != "hei0123456789" {
+		t.Errorf("Got unexpected string :%s", reduction)
+	}
+}
+
+func Test_Filter(t *testing.T) {
+	numbers := testNumbers(10)
+
+	predicate := func(t int) bool {
+		return t > 5
+	}
+	filtered := Filter(numbers, predicate)
 
 	if len(filtered) != 4 {
 		t.Errorf("Expected result of size 5, was %d", len(filtered))
 	}
 
 }
+
 func Test_Map(t *testing.T) {
 
-	numbers := make([]int, 10)
-	for i, _ := range numbers {
-		numbers[i] = i*10 + 14
-	}
+	numbers := testNumbers(10)
 
 	transform := func(t int) string {
 		return fmt.Sprintf("%d", t)
@@ -42,4 +76,26 @@ func Test_Map(t *testing.T) {
 		}
 	}
 
+}
+
+func Test_Any(t *testing.T) {
+	numbers := testNumbers(100)
+
+	if Any(numbers, func(t int) bool { return t > 100 }) {
+		t.Errorf("100 is not in slice")
+	}
+
+	if !Any(numbers, func(t int) bool { return t == 10 }) {
+		t.Errorf("10 is in slice")
+	}
+
+}
+
+//testNumbers is an internal function for testing-purposes
+func testNumbers(size int) []int {
+	numbers := make([]int, size)
+	for i := range numbers {
+		numbers[i] = i
+	}
+	return numbers
 }
