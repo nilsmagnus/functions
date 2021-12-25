@@ -18,6 +18,20 @@ func Test_ForEach(t *testing.T) {
 
 }
 
+func Test_Distinct(t *testing.T) {
+	numbers := testNumbers(199)
+	numbers = append(numbers, testNumbers(199)...)
+
+	tmp := 0
+
+	res := Distinct(numbers)
+
+	if len(res) != 199 {
+		t.Errorf("Action should have been run %d times, was only run %d times", len(numbers), tmp)
+	}
+
+}
+
 func Test_ForEachIndexed(t *testing.T) {
 	numbers := testNumbers(199)
 

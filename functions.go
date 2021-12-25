@@ -63,6 +63,21 @@ func ForEachIndexed[T any](items []T, action func(a T, index int)) {
 	}
 }
 
+func Distinct[T comparable](items []T) []T {
+	vals := map[T]T{}
+	for _, item := range items {
+		vals[item] = item
+	}
+
+	res := make([]T, 0, len(vals))
+
+	for _, t := range vals {
+		res = append(res, t)
+	}
+	return res
+
+}
+
 //Contains checks needle is in items.
 func Contains[T comparable](items []T, needle T) bool {
 	for _, t := range items {

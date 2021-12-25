@@ -14,6 +14,7 @@ Functions to support common collection-operations:
 * `contains`, `containsAll`
 * `first`, `last`
 * `forEach`, `forEachIndexed`
+* `distinct`
 
 Coming soon: See godoc for complete documentation.
 
