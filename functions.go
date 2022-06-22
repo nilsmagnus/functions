@@ -118,6 +118,14 @@ func Map[T any, O any](in []T, transform func(T) O) []O {
 	}
 	return out
 }
+// MapIndexed converts a slice of T to a slice of O using the transform-function
+func MapIndexed[T any, O any](in []T, transform func(T,int) O) []O {
+	out := make([]O, len(in))
+	for i, t := range in {
+		out[i] = transform(t, i)
+	}
+	return out
+}
 
 // Reduce reduces the input slice, in, to a resulting O using the accumulator-function
 func Reduce[T any, O any](in []T, acc func(O, T) O, initial O) (result O) {
@@ -129,4 +137,14 @@ func Reduce[T any, O any](in []T, acc func(O, T) O, initial O) (result O) {
 	}
 
 	return result
+}
+
+// Reverse a slice, return new slice with reversed values
+func Reverse[T any](s []T)[]T{
+	out := make([]T, len(s))
+	
+	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+		out[i], out[j] = s[j], s[i]
+	}
+	return out
 }
