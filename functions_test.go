@@ -18,6 +18,21 @@ func Test_ForEach(t *testing.T) {
 
 }
 
+func Test_Reverse(t *testing.T) {
+	numbers := testNumbers(199)
+
+	reversed := Reverse(numbers)
+
+	if len(reversed) != len(numbers) {
+		t.Errorf("reversed should have lenght %d, but was %d", len(numbers), len(reversed))
+	}
+
+	if reversed[len(reversed)-1] != numbers[0] {
+		t.Errorf("First of numbers is not same as last of reversed")
+	}
+
+}
+
 func Test_Distinct(t *testing.T) {
 	numbers := testNumbers(199)
 	numbers = append(numbers, testNumbers(199)...)
@@ -143,6 +158,27 @@ func Test_Map(t *testing.T) {
 	for i, transformed := range strings {
 		if transform(numbers[i]) != transformed {
 			t.Errorf("Number wash not mapped correctly, was %s, expected %s", transformed, transform(numbers[i]))
+		}
+	}
+
+}
+
+func Test_MapIndexed(t *testing.T) {
+
+	numbers := testNumbers(10)
+
+	transform := func(t int, index int) string {
+		return fmt.Sprintf("%d at %d", t, index)
+	}
+	strings := MapIndexed(numbers, transform)
+
+	if len(strings) != len(numbers) {
+		t.Errorf("input and output should be of equal lengths")
+	}
+
+	for i, transformed := range strings {
+		if transform(numbers[i], i) != transformed {
+			t.Errorf("Number wash not mapped correctly, was %s, expected %s", transformed, transform(numbers[i], i))
 		}
 	}
 
