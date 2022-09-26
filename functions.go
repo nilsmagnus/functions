@@ -29,6 +29,16 @@ func Any[T any](items []T, predicate func(T) bool) bool {
 	return false
 }
 
+// All checks if predicate is true for all item in items.
+func All[T any](items []T, predicate func(T) bool) bool {
+	for _, t := range items {
+		if !predicate(t) {
+			return false
+		}
+	}
+	return true
+}
+
 // First returns the first element of items matching predicate p. Returns item and a bool, the bool indicates if anything was found
 func First[T any](items []T, predicate func(T) bool) (*T, bool) {
 	for _, i := range items {
@@ -71,7 +81,6 @@ func Distinct[T comparable](items []T) []T {
 	}
 
 	res := make([]T, 0, len(vals))
-
 	for _, t := range vals {
 		res = append(res, t)
 	}
