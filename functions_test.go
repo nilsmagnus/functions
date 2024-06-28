@@ -226,11 +226,40 @@ func Test_ContainsAll(t *testing.T) {
 
 }
 
-//testNumbers is an internal function for testing-purposes
+// testNumbers is an internal function for testing-purposes
 func testNumbers(size int) []int {
 	numbers := make([]int, size)
 	for i := range numbers {
 		numbers[i] = i
 	}
 	return numbers
+}
+
+func Test_index_of_first(t *testing.T) {
+	numbers := testNumbers(100)
+
+	index := IndexOfFirst(numbers, func(i int) bool {
+		return i > 40
+	})
+
+	if index != 41 {
+		t.Fatalf("Expected first index to be 40, was %d", index)
+	}
+
+	minusOneWhenNever := IndexOfFirst(numbers, func(i int) bool {
+		return false
+	})
+
+	if minusOneWhenNever != -1 {
+		t.Fatalf("Expected -1 when never")
+	}
+
+	minusOneOnEmptyInput := IndexOfFirst([]int{}, func(i int) bool {
+		return i > 0
+	})
+
+	if minusOneOnEmptyInput != -1 {
+		t.Fatalf("Expected negative result on empty input")
+	}
+
 }

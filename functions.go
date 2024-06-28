@@ -88,7 +88,7 @@ func Distinct[T comparable](items []T) []T {
 
 }
 
-//Contains checks needle is in items.
+// Contains checks needle is in items.
 func Contains[T comparable](items []T, needle T) bool {
 	for _, t := range items {
 		if needle == t {
@@ -98,7 +98,7 @@ func Contains[T comparable](items []T, needle T) bool {
 	return false
 }
 
-//ContainsAll checks if all needles exists in items
+// ContainsAll checks if all needles exists in items
 func ContainsAll[T comparable](items []T, needles []T) bool {
 	for _, needle := range needles {
 		if !Contains(items, needle) {
@@ -108,7 +108,7 @@ func ContainsAll[T comparable](items []T, needles []T) bool {
 	return true
 }
 
-//Filter returns a slice of items matching the predicate
+// Filter returns a slice of items matching the predicate
 func Filter[T any](items []T, predicate func(T) bool) []T {
 	n := 0
 	for _, x := range items {
@@ -158,4 +158,14 @@ func Reverse[T any](s []T) []T {
 		out[i], out[j] = s[j], s[i]
 	}
 	return out
+}
+
+// IndexOfFirst returns the first index of where test is true. -1 if no match
+func IndexOfFirst[T any](s []T, test func(T) bool) int {
+	for i := 0; i < len(s); i++ {
+		if test(s[i]) {
+			return i
+		}
+	}
+	return -1
 }
